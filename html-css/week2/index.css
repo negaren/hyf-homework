@@ -1,8 +1,8 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
-   
     overflow-x: hidden;
     margin: 0px 0px;
+    word-spacing: -3px;
 }
 a {
     color: inherit;
@@ -85,30 +85,32 @@ nav.nav-parent{
 .main-section-row1{
     padding-top: 2%;
     display: flex;
+    padding-left: 11%;
+    padding-right: 11%;
     
 }
 .main-up-left{
     float: left;
-    padding-left: 11%;
+    
     padding-right: 5%;
     width: 30%;
     text-align: justify;
 }
 .main-up-right{
-    padding-right: 11%;
+    
     float: left;
     text-align: justify;
     width: 60%;
 }
 .main-down-left{
     float: left;
-    padding-left: 11%;
+    
     padding-right: 5%;
     width: 30%;
     text-align: justify;
 }
 .main-down-right{
-    padding-right: 11%;
+    
     float: left;
     text-align: justify;
     width: 60%;
@@ -140,6 +142,12 @@ nav.nav-parent{
     padding: 0 4px;
   }
   /* Responsive layout - makes a two column-layout instead of four columns */
+  @media screen and (max-width: 600px) {
+    body {
+      word-spacing: -3px;
+    }
+  }
+  
   @media screen and (max-width: 800px) {
     .logo-column {
       -ms-flex: 50%;
@@ -162,6 +170,12 @@ nav.nav-parent{
       flex: 100%;
       max-width: 100%;
     }}
+    @media screen and (max-width: 800px) {
+        img.size {
+          -ms-flex: 100%;
+          flex: 100%;
+          max-width: 100%;
+        }}
   @media screen and (max-width: 600px) {
     img {
       -ms-flex: 100%;
@@ -178,6 +192,7 @@ nav.nav-parent{
   div.main-section-row1 {
     font-size: 70%;
     word-spacing:normal;
+    word-spacing: -5px;
   }}
 
 @media screen and (max-width: 600px) {
