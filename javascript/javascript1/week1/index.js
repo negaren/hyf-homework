@@ -57,5 +57,5 @@ const secondWords = ["Fresh", "Delivery", "Food", "Fresh", "Foody", "Time", "Mea
 const randomNumber = Math.floor(Math.random() * 10);
 let startupName;
 startupName = firstWords[randomNumber] + " " + secondWords[randomNumber];
-console.log("The suggested start up name is: " + startupName);
+console.log("The suggested start up name is: " + startupName + ". Its contains: " + startupName.length + " characters.");
 
