@@ -89,12 +89,13 @@ function addStudentToClass(studentName) {
         console.log("Cannot add more students to class 07")
     } else if (getNumberOfStudents() > 6) {
         console.log("Cannot add more students to class 07")
-    }else{
+    }else if (getNumberOfStudents()<6 && studentName!== "") {
         class07Students.push(studentName)
         console.log(class07Students);
     } 
 }
 addStudentToClass("Negar")
+addStudentToClass("")
 addStudentToClass("Negar")
 addStudentToClass("Mani")
 addStudentToClass("Jette")
@@ -104,6 +105,7 @@ addStudentToClass("Linda")
 addStudentToClass("Elvis")
 addStudentToClass("Queen")
 addStudentToClass("Queen")
+
 
 //addCandy function-----------------------------------------------------------------------------------------
 //sweet, chocolate, toffee or chewing-gum
