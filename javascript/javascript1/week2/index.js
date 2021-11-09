@@ -19,8 +19,8 @@ function getFullname2(firstname, surname, useFormalName) {
     }
 }
 
-let fullname1 = getFullname2("Negar", "Namini", true);
-let fullname2 = getFullname2("Negar", "Namini");
+const fullname1 = getFullname2("Negar", "Namini", true);
+const fullname2 = getFullname2("Negar", "Namini");
 console.log(fullname1);
 console.log(fullname2);
 
@@ -28,13 +28,19 @@ console.log(fullname2);
 let today = new Date();
 const weekDays = ["Monday", "Tuesday", "Wednesday", "Tursday", "Friday", "Saturday", "Sunday"]
 function getEventWeekday(dayNumber) {
-    const toDayNumber = today.getDay();
+    const toDayNumber = today.getDay()-1
+    console.log(today.getDay());
     if (dayNumber == 7) {
-        console.log("Today is " + '"', weekDays[toDayNumber - 1], '"' + " and the event day is a week later the same day!");
+        console.log("Today is " + '"', weekDays[toDayNumber], '"' + " and the event day is a week later the same day!");
     } else if (dayNumber < 7) {
-        console.log("Today is " + '"', weekDays[toDayNumber - 1], '"' + " and the event day is on:" + '"', weekDays[toDayNumber + dayNumber - 1], '"');
+        if(dayNumber+toDayNumber>=7){
+            console.log("Today is " + '"', weekDays[toDayNumber], '"' + " and the event day is on:" + '"', weekDays[(toDayNumber + dayNumber)%7-1], '"');
+        }else{
+            console.log("Today is " + '"', weekDays[toDayNumber], '"' + " and the event day is on:" + '"', weekDays[(toDayNumber + dayNumber)], '"')
+        }
+        
     } else {
-        console.log("Today is " + '"', weekDays[toDayNumber - 1], '"' + " and the event day is on: " + '"', weekDays[(dayNumber % 7) + toDayNumber - 1], '"');
+        console.log("Today is " + '"', weekDays[toDayNumber], '"' + " and the event day is on: " + '"', weekDays[(dayNumber + toDayNumber)% 7], '"');
     }
 }
 getEventWeekday(9)
