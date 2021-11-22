@@ -80,7 +80,7 @@ tvTime();
 //Smart-ease - Back to the basics!-----------------------------------------------------------------------
 //NOnoN0nOYes (Note taking app)
 //Save a note
-var notes = [];
+const notes = [];
 function saveNote(content, id) {
     notes.push({ content, id });
 }
@@ -118,7 +118,7 @@ logOutNotesFormatted();
 //-----------------------------------------------------------------------------------------------------------------
 //CactusIO-interactive (Smart phone usage app) optional
 //Adding an activity
-let activities = [];
+const activities = [];
 function addActivity(Date, activity, duration) {
     if (typeof Date === "string" && typeof activity === "string" && typeof duration === "number") {
         if (showStatus(activities) == true) {
@@ -157,8 +157,8 @@ showStatus(activities);
 //Extra feature *********************************** 
 // I have defined new line of codes instead of edditing previous lines of code
 
-let activities1 = [];
-var todayDate = new Date();
+const activities1 = [];
+const todayDate = new Date();
 function addActivity1(activity, duration) {
     if (typeof activity === "string" && typeof duration === "number") {
         if (showStatus1(activities1) == true) {
