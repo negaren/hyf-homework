@@ -171,6 +171,8 @@ function filtercolor(color) {
     // 3- is there any way to create tags and make it easy to display group filtered products?
     //4- will studying SQL help us to find more easy  -short ways to create bunch of product?
     // 5- please introduce JS sources to become more familiar with different methods except MDN.
+    
+    // important *** I just noticed I should check the remained paragraph for stating coding :) I will add it later
     if (checkBoxBlue.checked == true && checkBoxRed.checked == true && checkBoxBlack.checked == true) {
         const filterResult = products.filter(product => product.color == "Black" || product.color == "Red" || product.color == "Blue");
         let j = 0;
