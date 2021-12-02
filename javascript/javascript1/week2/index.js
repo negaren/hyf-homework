@@ -30,8 +30,8 @@ const weekDays = ["Monday", "Tuesday", "Wednesday", "Tursday", "Friday", "Saturd
 function getEventWeekday(dayNumber) {
     const toDayNumber = today.getDay()-1
     console.log(today.getDay());
-    if (dayNumber == 7) {
-        console.log("Today is " + '"', weekDays[toDayNumber], '"' + " and the event day is a week later the same day!");
+    if ((dayNumber % 7) == 0) {
+        console.log("Today is " + '"', weekDays[toDayNumber], '"' + " and the event day is on the same day!");
     } else if (dayNumber < 7) {
         if(dayNumber+toDayNumber>=7){
             console.log("Today is " + '"', weekDays[toDayNumber], '"' + " and the event day is on:" + '"', weekDays[(toDayNumber + dayNumber)%7-1], '"');
