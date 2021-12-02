@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div>
+        <label for="fname">Enter your first name to get the name of spirit animal name!</label><br>
+        <input type="text" id="fname" />
+        <button id="getName">Click Here</button>
+        <output id="spiritnameout"></output>
+    </div>
+<div>
+    <button id="newSpiritbtn" onmouseover="spiritAnimShowFunction(this)" onmouseout="mouseOutFunction(this)">New Spirit Animal</button>
+</div>
+<label for="buttoncheck">Check if you want to click the button to show the result!</label>
+<input type="checkbox" id="buttoncheck" onclick="{myFunction()}"/> <br>
+<label for="hovercheck">Check if you want to hover to show the result!</label>
+<input type="checkbox" id="hovercheck" onclick="{hoverCheckBoxFunction()}"/>
+    <div>
+        <label for="searchbox">Please insert the item name for searching. (Pnats, T-shirts, Blue, Black, Red)</T-shirts></label>
+        <input type="search" id="searchbox"/>
+        <button id="searchingbutton">Search</button>
+        <div>
+            <output id="productOutput"></output>
+        </div>  
+    </div>
+    <div class="container-color">
+        <button id="btn-color" class="btn-color">Color</button>
+        <div class="dropdown-color">
+            <label for="checkcboxblue">blue</label>
+            <input type="checkbox" id="checkcboxcolor1" class="checkcboxblue" onclick="{filtercolor('blue')}"/>
+            <label for="checkcboxred">red</label>
+            <input type="checkbox" id="checkcboxcolor2" class="checkcboxred" onclick="{filtercolor('red')}"/>
+            <label for="checkcboxblack">black</label>
+            <input type="checkbox" id="checkcboxcolor3" class="checkcboxblack" onclick="{filtercolor('black')}"/>
+        </div>
+        <div>
+        <div>
+            <output id="outputfilter1"></output>
+        </div>
+            <div>
+                <output id="outputfilter2"></output>
+            </div>
+            <div>
+                <output id="outputfilter3"></output>
+            </div>
+            
+        </div>
+
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>
