@@ -2,7 +2,7 @@ button:hover, button:focus, button:active {
     background-color: rgb(86, 146, 138);
 }
 
-.btncolor {
+.btn-color {
     background-color: #04AA6D;
     color: white;
     padding: 16px;
@@ -10,12 +10,12 @@ button:hover, button:focus, button:active {
     border: none;
   }
   
-  .containecolor {
+  .container-color {
     position: relative;
     display: inline-block;
   }
   
-  .dropdowncolor {
+  .dropdown-color {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
@@ -24,13 +24,13 @@ button:hover, button:focus, button:active {
     z-index: 1;
   }
   
-  .dropdowncolor input {
+  .dropdown-color input {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
   }
-  .containecolor:hover .dropdowncolor {display: block;}
+  .container-color:hover .dropdown-color {display: block;}
   
   body {
       background-color: rgb(122, 151, 141);

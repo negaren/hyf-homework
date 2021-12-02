@@ -2,21 +2,21 @@
 const danishWords = ["bil", "plante", "kaffe", "bog", "ø", "planetarium"];
 let spareArr = [];
 function shortestWord(myArr) {
-    for (let key in myArr) { //search in the value of the function which is an array
-        let wordLength = myArr[key].length; //getting the length of the arrays element
-        if (spareArr.length < 1) { // check if the spare array contain a word 
-            spareArr.push(myArr[key]); // if it does not it can be pushed by the new shortest word
+    for (let key of myArr) { 
+        let wordLength = key.length; 
+        if (spareArr.length < 1) { 
+            spareArr.push(key); 
         } else {
-            if (spareArr[0].length > wordLength) { // checking if the existing word length is longer than the new word length
-                spareArr = []; // if yes the array will be reset
-                spareArr.push(myArr[key]); // the new shortest word would be replaced
-                // check the condition of words with equal and prevent to have itterative words
-            } else if (spareArr[0].length == myArr[key].length && spareArr[0] !== myArr[key]) {
-                spareArr.push(myArr[key]); // pushing different word with equal length in the array, for test the result please add "p" to the danishWords array
+            if (spareArr[0].length > wordLength) { 
+                spareArr = []; 
+                spareArr.push(key); 
+                
+            } else if (spareArr[0].length == key.length && spareArr[0] !== key) {
+                spareArr.push(key); 
             }
         }
     }
-    const finalStr = spareArr.toString(""); // to print an string instead of array
+    const finalStr = spareArr.toString(""); 
     return finalStr;
 
 }
@@ -26,7 +26,6 @@ console.log(shortestWord(danishWords)); // returns 'ø'
 // Find and count the Danish letters ***********************************************************************************************************************************
 //Find the individual number and the total number of Danish letters in a string.
 
-const danishLetters = ["æ", "ø", "å"]
 function danishLetterCounter(sentence) {
 
     const str = sentence.toLowerCase();
@@ -34,13 +33,13 @@ function danishLetterCounter(sentence) {
     const aeCounter = (str.match(/æ/g) || []).length;
     const aCounter = (str.match(/å/g) || []).length;
     total = aeCounter + aCounter + oCounter;
-    const result = [{ "total": total, "æ": aeCounter, "ø": oCounter, "å": aCounter }];
+    const result = { "total": total, "æ": aeCounter, "ø": oCounter, "å": aCounter };
+    return result
 }
 const danishString = "Jeg har en blå bil";
-danishLetterCounter(danishString); // returns {total: 1, å: 1}
-
+console.log(danishLetterCounter(danishString));// returns {total: 1, å: 1}
 const danishString2 = "Blå grød med røde bær";
-danishLetterCounter(danishString2); // returns {total: 4, æ: 1, ø: 2, å: 1}
+console.log(danishLetterCounter(danishString2)); // returns {total: 4, æ: 1, ø: 2, å: 1}
 
 
 //Spirit animal name generator ********************************************************************************************************************************
@@ -50,18 +49,8 @@ const spiritAnimal = ["Emotional Bear", "Butterfly", "Deer", "Cat", "Frog", "Fox
 const getNameButton = document.getElementById("getName");
 document.getElementById("newSpiritbtn").disabled = true;
 let hoverTest = document.getElementsByTagName("button");
-// getNameButton.addEventListener('click', function () {
-//     const getnamein = document.getElementById("fname").value;
-//     console.log(getnamein.length);
-//     if (getnamein.length !== 0) {
-//         const randomAnimalIndex = Math.floor(Math.random() * spiritAnimal.length);
-//         const result = `${getnamein} - ${spiritAnimal[randomAnimalIndex]} `;
-//         document.getElementById("spiritnameout").value = result;
-//         return console.log(result);
-//     } else {
-//         console.log("nothing");
-//     }
-// })
+
+
 
 //New spirit animal ********************************************************************************************************************************
 
