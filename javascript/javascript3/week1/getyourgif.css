@@ -1,6 +1,9 @@
 button {
-    width: 8rem;
+    width: 9rem;
     height: 3rem;
+    border-radius: 1rem;
+    background-color: rgb(145, 93, 194);
+    border-color: rgb(233, 233, 93);
 }
 main {
     display: flex;
@@ -15,4 +18,19 @@ div {
 }
 input {
     margin: 0.5rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    width: 11rem;
+    border-color: rgb(233, 233, 93);
+}
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-image:url('https://i.ibb.co/bbwfzWt/cool-background-1.png');
+    background-size:120%;
+}
+h2 {
+    font-family: fantasy;
+    font-size: 40px;
+    font-weight: bold;
+    color: rgb(44, 40, 33);
 }
