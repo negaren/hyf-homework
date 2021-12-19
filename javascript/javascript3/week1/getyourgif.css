@@ -4,6 +4,8 @@ button {
     border-radius: 1rem;
     background-color: rgb(145, 93, 194);
     border-color: rgb(233, 233, 93);
+    color:aliceblue ;
+    font-weight: bold;
 }
 main {
     display: flex;
