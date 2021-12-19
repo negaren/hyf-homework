@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="weatherapp.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+    <title>Document</title>
+</head>
+<body>
+    <main class="main-container" class="bg">
+        <!-- <img src="https://i.ibb.co/C9JdvGK/Weather-Background.jpg" alt="Weather-Background" border="0"> -->
+        <div>
+            <h2>Please insert the desired city name.</h2>
+        </div>
+        <div>
+            <input type="text" placeholder="Please enter the city name" id="city-input">
+            <button id="city-button">Show weather data</button>
+        </div>
+        <div id="city-name"></div>
+        <div id="temp"></div>
+        <div id="icon">
+            <img src="" id="icon-image" />
+        </div>
+        <div id="wind-speed"></div>
+        <div id="cloud"></div>
+        <div id="sunrise-sunset"></div>
+        <button id="btn-current-position">Get your current position weather status</button>
+    </main>
+    <div id="map"></div>
+   <script src="weatherapp.js" ></script>
+   <script>
+    </script>
+   
+</body>
+</html>
