@@ -1,4 +1,5 @@
 //Age-ify (A future age calculator)
+
 let yearOfBirth;
 let yearFuture;
 yearOfBirth = 1985;
