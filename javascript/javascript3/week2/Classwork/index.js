@@ -98,3 +98,34 @@ async function randomNumberFunc (){
 }
 randomNumberFunc();
 
+// Runner
+
+function runner(time = Math.floor(Math.random() * 6000) + 2000) { // random number between 2000 and 8000
+    return new Promise((resolve, reject) => setTimeout(() => resolve(time), time))
+}
+
+const totalRunners = 10; // Could be any number here
+
+const runnersCompeting = Array.from({ length: totalRunners }, () => runner); // Creating an array of runners to compete
+const timeArr = [];
+const runnersRacing = runnersCompeting.map((runner) => { // start runners
+    return runner()//.then((result)=>{console.log(result);})
+    //console.log(runner());
+})
+
+async function firstRunner(){
+    Promise.all(runnersRacing)
+    let i = 0;
+    let j = 0;
+    runnersRacing.map((runner) => {
+        runner.then((result) => {
+            i = result;
+            if (j > i || j == 0){
+                j = i
+            }
+            console.log(j);
+        })``
+        
+    })
+}
+firstRunner();
