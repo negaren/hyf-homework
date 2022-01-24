@@ -9,19 +9,30 @@ fetch('https://gist.githubusercontent.com/pankaj28843/08f397fcea7c760a99206bcb0a
     for (voteVal of data){
         voteArr.push(voteVal.votes)
     }
+    console.log(data);
     minVote = Math.min.apply(null, voteArr);
     maxVote = Math.max.apply(null ,voteArr);
     const avgVote = (minVote + maxVote)/2;
-    for (voteValue of data){
-        if (voteValue.votes < avgVote){
-            badMoviesArr.push(voteValue.title);
+    badMoviesArr = data.map(voteValue => {
+        if(voteValue.votes < avgVote){
+            return voteValue.title
         }
-    }
+    })
+    // for (voteValue of data){
+    //     if (voteValue.votes < avgVote){
+    //         badMoviesArr.push(voteValue.title);
+    //     }
+    // }
     console.log(`The list of Bad movies: ${badMoviesArr}`);
-    for (Value of data){
-        if (Value.votes < avgVote && Value.year <= 2000){
-            badMoviesSinceYearArr.push(Value.title)
+    badMoviesSinceYearArr = data.map(value => {
+        if (value.votes < avgVote && value.year <= 2000){
+            return value.title
         }
-    }
+    })
+    // for (Value of data){
+    //     if (Value.votes < avgVote && Value.year <= 2000){
+    //         badMoviesSinceYearArr.push(Value.title)
+    //     }
+    // }
     console.log(`The list of Bad movies since year 2000 is: ${badMoviesSinceYearArr}`);
 })
