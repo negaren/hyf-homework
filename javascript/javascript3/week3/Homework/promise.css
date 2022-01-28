@@ -1,0 +1,21 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: rgb(70, 109, 153);
+    color: azure;
+}
+li {
+    list-style: none;
+}
+
+ .main-div {
+    border: rgb(217, 217, 233);
+    border-style:ridge;
+    border-width:thin;
+ }
+ div {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+}
