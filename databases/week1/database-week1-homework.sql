@@ -1,15 +1,19 @@
 -- 1
+USE hyf_lesson1;
+SELECT * FROM task;
 SELECT
   COUNT(id)
 FROM
   `task`;
 -- 2
 SELECT
-  COUNT(due_date)
+  SUM( CASE 
+          WHEN due_date IS NULL THEN 1
+          ELSE 0 
+          END)
 FROM
-  `task`
-WHERE
-  due_date = NULL;
+  `task`;
+
 -- 3
 SELECT
   status.name,
@@ -36,7 +40,7 @@ SELECT
 FROM
   task
 ORDER BY
-  created;
+  created DESC;
 -- 6
 SELECT
   *
