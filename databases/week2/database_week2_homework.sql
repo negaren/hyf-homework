@@ -1,8 +1,5 @@
 -- part1
-ALTER TABLE
-  task
-ADD
-  user_id int(10);
+USE hyf_lesson1;
 INSERT INTO
   `task` (
     title,
@@ -28,29 +25,29 @@ UPDATE
 set
   title = 'Planting'
 WHERE
-  user_id = 12;
+ id = (select LAST_INSERT_ID());
 UPDATE
   task
 set
   due_date = '2023-03-09 13:16:47'
 WHERE
-  user_id = 12;
+  id = (select LAST_INSERT_ID());
 UPDATE
   task
 set
   status_id = 2
 WHERE
-  user_id = 12;
+  id = (select LAST_INSERT_ID());
 UPDATE
   task
 set
   status_id = 3
 WHERE
-  user_id = 12;
+  id = (select LAST_INSERT_ID());
 DELETE FROM
   task
 WHERE
-  user_id = 12;
+  id = (select LAST_INSERT_ID());
 SELECT
   *
 FROM
