@@ -1,0 +1,26 @@
+[
+    {
+        "id" : 1,
+        "title" : "Indian food in the summer",
+        "maxNumberOfGuests" : 5,
+        "description" : "A nice night out eating delicious indian food",
+        "createdAt" : "2019/12/7 14:34",
+        "price" : 67
+    },
+    {
+        "id" : 2,
+        "title" : "Koobideh kebab",
+        "maxNumberOfGuests" : 3,
+        "description" : "A nice day out eating the most delicious kebab you have ever tried",
+        "createdAt" : "2020/12/7 14:34",
+        "price" : 100
+    },
+    {
+        "id" : 3,
+        "title" : "Ghormeh Sabzi stew with rice",
+        "maxNumberOfGuests" : 10,
+        "description" : "A nice dining in experience with the most delicious persian cuisine",
+        "createdAt" : "2020/12/7 14:34",
+        "price" : 100
+    }
+]

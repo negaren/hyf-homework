@@ -1,0 +1,30 @@
+[
+    {
+      "id": 1,
+      "numberOfStars": 3,
+      "content": "Best meal ever",
+      "mealId": 1,
+      "createdAt": 12345
+    },
+    {
+      "id": 2,
+      "numberOfStars": 4,
+      "content": "Best Kebab ever",
+      "mealId": 2,
+      "createdAt": 20210325
+    },
+    {
+      "id": 3,
+      "numberOfStars": 5,
+      "content": "Best stew ever",
+      "mealId": 3,
+      "createdAt": 20220105
+    },
+    {
+      "id": 4,
+      "numberOfStars": 2,
+      "content": "Worst stew ever",
+      "mealId": 3,
+      "createdAt": 20220106
+    }
+  ]
