@@ -53,11 +53,11 @@ function xyRandom() { return Math.floor(Math.random() * w()); }
 function radiusRandom() { return Math.floor(Math.random() * 100); }
 
 function generateRandomColor() {
-    let maxVal = 0xFFFFFF;
+    const maxVal = 0xFFFFFF;
     let randomNumber = Math.random() * maxVal;
     randomNumber = Math.floor(randomNumber);
     randomNumber = randomNumber.toString(16);
-    let randColor = randomNumber.padStart(6, 0);
+    const randColor = randomNumber.padStart(6, 0);
     return `#${randColor.toUpperCase()}`
 }
 async function cilcleArt() {
@@ -75,8 +75,8 @@ callCircle()
 
 // circle art by mouse movement
 function myFunction(e) {
-    var x = e.clientX;
-    var y = e.clientY;
+    const x = e.clientX;
+    const y = e.clientY;
     console.log(x , y);
     const c2 = new Circle(x, y, radiusRandom(), 10, 2 * Math.PI, generateRandomColor());
     c2.draw();

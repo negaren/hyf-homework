@@ -5,7 +5,7 @@ class Product {
     }
     async convertToCurrency(currency) {
         try {
-            let currencyApi = await fetch('https://freecurrencyapi.net/api/v2/latest?apikey=381b6a80-8059-11ec-9351-cb56f1982e46');
+            const currencyApi = await fetch('https://freecurrencyapi.net/api/v2/latest?apikey=381b6a80-8059-11ec-9351-cb56f1982e46');
             const currJson = await currencyApi.json();
             const currData = await currJson.data;
             console.log(currData);
@@ -34,7 +34,7 @@ class ShoppingCart {
 
     removeProduct(product) {
         const pIndex = this.products.indexOf(product);
-        const result = this.products.splice(pIndex, 1);
+        this.products.splice(pIndex, 1);
         return this.products
     }
 

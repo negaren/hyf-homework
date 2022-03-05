@@ -60,6 +60,9 @@ Promise.all([fetchRepo('Vahablotfi'), fetchRepo('mariem460'), fetchRepo('QaisSaa
                 })
         }
     })
+    .catch((error) => {
+        console.log(error);
+    })
 
 
 
