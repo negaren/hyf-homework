@@ -56,8 +56,7 @@ router.get("/:id", async (request, response) => {
   }
   else {
     try {
-      const mealById = meals.find(meal => `${meal.id}` == idParam);
-      console.log(typeof mealById);
+      const mealById = meals.find(meal => meal.id == idParam);
       if(typeof mealById == 'undefined') {
         response.send(404);
       }
