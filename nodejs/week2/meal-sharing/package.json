@@ -15,7 +15,8 @@
     "express": "^4.17.1"
   },
   "scripts": {
-    "dev": "npx nodemon server.js",
-    "start": "node server.js"
+    "test": "jest --runInBand",
+    "start": "node ./src/backend/server.js",
+    "dev": "nodemon ./src/backend/server.js"
   }
 }

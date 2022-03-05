@@ -58,7 +58,7 @@ router.get("/:id", async (request, response) => {
     try {
       const mealById = meals.find(meal => meal.id == idParam);
       if(typeof mealById == 'undefined') {
-        response.send(404);
+        response.send("The id does not exist");
       }
       response.send(mealById);
     }
