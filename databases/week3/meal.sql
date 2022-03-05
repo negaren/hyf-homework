@@ -11,7 +11,7 @@ CREATE TABLE `meal`(
     `location` VARCHAR(255) NOT NULL,
     `when` DATETIME NOT NULL,
     `max_reservations` INT(10) UNSIGNED NOT NULL,
-    `price` DECIMAL NOT NULL,
+    `price` DECIMAL(7.2) NOT NULL,
     `created-date` DATE NOT NULL,
     PRIMARY KEY (`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -25,7 +25,7 @@ CREATE TABLE `reservation`(
     `contact_name` VARCHAR(255) NOT NULL,
     `contact_email` VARCHAR(255) NOT NULL,
     PRIMARY KEY (`id`),
-    CONSTRAINT `fk_meal_reservation` FOREIGN KEY (`meal_id`) REFERENCES `meal` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT `fk_meal_reservation` FOREIGN KEY (`meal_id`) REFERENCES `meal` (`id`) 
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `review`(
@@ -126,12 +126,18 @@ SELECT* from meal;
 SELECT * from reservation;
 
 -- Meals with the calculation based on the number of the total reservations without considering the number of guests (The question is not obvious)
-SELECT * 
-FROM (SELECT COUNT(reservation.id) AS NUM, meal.title, meal.id, meal.`max_reservations`
-FROM meal
-INNER JOIN reservation ON meal.id = reservation.meal_id
-GROUP BY reservation.meal_id) as ml
-WHERE ml.NUM < ml.`max_reservations`;
+select sum(reservation.number_of_guests
+) AS Total_Guest,
+meal.title,
+meal.id,
+meal.`max_reservations`
+FROM
+  meal
+  INNER JOIN reservation ON meal.id = reservation.meal_id
+GROUP BY
+  reservation.meal_id
+HAVING
+  sum(reservation.number_of_guests) < meal.`max_reservations`;
 
 -- Meals with the calculation based on the number of guests (The question is not obvious)
 SELECT * 
@@ -161,10 +167,10 @@ WHERE stars >= 4;
 SELECT *
 FROM reservation
 WHERE meal_id = 4
-ORDER BY `created-date` ASC; 
+ORDER BY `created_date` ASC; 
 
-SELECT AVG(stars), meal.id, meal.title, review.stars, review.meal_id
-FROM meal
-JOIN review ON meal.id = review.meal_id
+SELECT AVG(review.stars) as `average_review`, meal.id, meal.title
+FROM review
+JOIN meal ON meal.id = review.meal_id
 GROUP BY meal.id 
-ORDER BY stars DESC;
+ORDER BY `average_review` DESC;
