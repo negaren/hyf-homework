@@ -1,4 +1,5 @@
 import './Tasks.css';
+import TaskRender from './TaskRender';
 
 const Tasks = [
     {
@@ -17,16 +18,12 @@ const Tasks = [
 
 export function TasksList() {
     return (
-        <div class="tasks-main-div">
-            {Tasks.map(task => {
-                return (
-                    <div class="tastks-div">
-                        <li>
-                            {task.description}, {task.deadline_date}
-                        </li>
-                    </div>
-                )
-            })}
-        </div>
+        Tasks.map(item => {
+            return (
+                <>
+                   <TaskRender description={item.description} deadline_date={item.deadline_date} />
+                </>
+            )
+        })
     );
 }
