@@ -133,7 +133,7 @@ meal.id,
 meal.`max_reservations`
 FROM
   meal
-  INNER JOIN reservation ON meal.id = reservation.meal_id
+  RIGHT JOIN reservation ON meal.id = reservation.meal_id
 GROUP BY
   reservation.meal_id
 HAVING
