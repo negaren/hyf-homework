@@ -1,8 +1,15 @@
-const TodoDescription = ({text}) => {
+
+const TodoDescription = ({onchange}) => {
+    
     return (
-        <input type={text} value=''>
+        <div>
+            <br/>
+            <label>Task description </label>
+            <input type='text' onChange={onchange}>
         </input>
+        </div> 
     )
 }
 
 export default TodoDescription
+

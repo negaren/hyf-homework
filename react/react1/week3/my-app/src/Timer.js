@@ -1,38 +1,20 @@
-import React from "react";
-//import ReactDOM from "react-dom";
+import React,{useEffect, useState} from "react";
 
-class Counter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      elapsedTime: null
-    };
+const Counter = () => {
+  const [second, setSecond] = useState(0)
 
-    this.countUp = this.countUp.bind(this);
-    this.startCounting = this.startCounting.bind(this);
-  }
+  useEffect(() => {
+   second >= 0 && setTimeout(() => {
+    setSecond(second + 1)
+   }, 1000);
+     
+  }, [second]);
 
-  startCounting() {
-    setInterval(this.countUp, 1000);
-  }
-
-  countUp() {
-    this.setState(({ elapsedTime }) => ({ elapsedTime: elapsedTime + 0.5 }));
-  }
-
-  render() {
-    return (
-      <div>
-        <div>{this.state.elapsedTime}</div>
-        {!this.state.elapsedTime && (
-            this.startCounting()
-          //<button onClick={this.startCounting}>Start</button>
-        )}
-      </div>
-    );
-  }
+  return (
+    <div>
+      {second}
+    </div>
+  )
 }
 
-//const rootElement = document.getElementById("root");
-//ReactDOM.render(<Counter />, rootElement);
 export default Counter

@@ -1,6 +1,6 @@
-const DeleteFromList = ({deleteItem}) => {
+const DeleteFromList = ({deleteItems}) => {
     return (
-        <span deleteItem={deleteItem} >
+        <span deleteItem={deleteItems} >
             No more items to show
         </span>
     )

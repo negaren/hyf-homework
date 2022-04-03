@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './TodoList.css';
-import Addbutton from './Addtodolist'
 import TodoListRow from './TodoListRow'
 import DeleteFromList from './DeleteFromList'
 import Counter from './Timer'
+import TodoDescription from "./TodoDescription";
+import Addbutton from './Addtodolist'
+import DateInput from "./DateInput";
+import EditTask from "./EditTask";
 
 
 const desc = [
@@ -13,13 +16,21 @@ const desc = [
     'Random todo4'
 ]
 
-export const TodoList = ({fetchUrl}) => {
+let todoArrEdit = [];
 
-    let [todo, setTodo] = useState([]);
+export const TodoList = ({ fetchUrl }) => {
+
+    const [todo, setTodo] = useState([])
+    const [text, setText] = useState('')
+    const [date, setDate] = useState('')
+    const [edit, setEdit] = useState([])
+    const [editInput, setEditInput] = useState('')
+    const [buttonValue, setButtonValue] = useState('Edit')
 
     useEffect(() => {
-        addTodo();
+        existingTodo();
     }, []);
+
 
     const getTodo = () => {
         return (
@@ -27,54 +38,101 @@ export const TodoList = ({fetchUrl}) => {
         )
     }
 
-    const addTodo = () => {
+    const existingTodo = () => {
         return (
-            getTodo().then((result) => 
-            result.map(item => setTodo((prev) => [...prev, item]))   
-        )
+            getTodo().then((result) => {
+                const fetchItems = result.map(item => {
+                    const nextTodo = { ...item, 'edit': false }
+                    setTodo((prev) => [...prev, nextTodo])
+                })
+            }
+            )
         )
     }
 
 
-    const deleteItem = (id) => {
+    const deleteItems = (id) => {
         var deletedList = [...todo]
         const filteredList = deletedList.filter(item => item.id !== id)
-        console.log(filteredList);
         setTodo(filteredList)
         if (filteredList.length === 0) {
-            console.log('no item');
-             setTodo([])
+            setTodo([])
         }
     }
-
 
     const stateChange = (id) => {
         var updatedList = [...todo]
         updatedList.forEach(item => {
-            if(item.id === id) {
+            if (item.id === id) {
                 item.checked = !item.checked
             }
         })
-        setTodo(updatedList) 
+        setTodo(updatedList)
+    }
+
+    const addTodo = () => {
+        const nextId = todo.length + 2
+        const nextTodo = [...todo, { 'description': text, 'id': nextId, 'checked': false, 'deadline': date }]
+        setTodo(nextTodo)
+        //console.log(nextTodo); //is it a bug that it is not been added at the same time to todo array?
+    }
+    const onTextChange = (event) => {
+        setText(event.target.value);
+    }
+
+    const onDateChange = (event) => {
+        setDate(event.target.value);
+    }
+
+    const editTodo = (id) => {
+        var editList = [...todo]
+        editList.map(item => {
+            if (item.id == id) {
+                const nextTodo = { ...item, 'edit': true }
+                edit.push(nextTodo)
+                setEditInput(item.description)
+            }
+            else {
+                const nextTodo = { ...item, 'edit': false }
+                edit.push(nextTodo)
+            }
+        })
+        setTodo(edit)
+    }
+
+    const onEditChange = (event) => {
+        setEditInput(event.target.value);
     }
 
 
     return (
         <div>
-            <Counter/>
+            <Counter />
+            <TodoDescription onchange={onTextChange} />
+            <br />
+            <DateInput onchange={onDateChange} />
+            <br />
+            <Addbutton addTodo={addTodo} />
             <ul>
-            {todo.map((item, index) => {
-                return ( 
-                        <TodoListRow key={item.id} 
-                        todo={item.description} 
-                        checked={item.checked}  
-                        onCheck={() => {stateChange(item.id)}}  
-                        onclick={() => {deleteItem(item.id)}} />         
-                )
-            })}
-        </ul>
-        <Addbutton addTodo={addTodo}/>
-        {todo.length===0 ? <DeleteFromList/> : true}
+                {todo.map((item) => {
+
+                    return (
+
+                        <TodoListRow key={item.id}
+                            todo={item.description}
+                            edit={item.edit}
+                            todoDate={item.deadline}
+                            checked={item.checked}
+                            onCheck={() => { stateChange(item.id) }}
+                            onclick={() => { deleteItems(item.id) }}
+                            editTodo={() => editTodo(item.id)}
+                            onEdit={onEditChange}
+                            editInput={editInput}
+                        />
+                    )
+                })}
+            </ul>
+            {todo.length === 0 ? <DeleteFromList /> : true}
         </div>
     )
 }
