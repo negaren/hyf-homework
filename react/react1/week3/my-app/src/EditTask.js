@@ -1,7 +1,8 @@
-const EditTask = ({todo}) => {
-    return (
-        <input type={'text'} value={todo}></input>
-    )
-}
+// import { useState } from "react";
 
-export default EditTask 
+// const SetEditToFalse = ({refereshEdit}) => {
+
+//     <span refereshEdit={refereshEdit} ></span>
+// }
+
+// export default SetEditToFalse

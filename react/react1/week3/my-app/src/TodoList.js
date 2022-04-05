@@ -6,49 +6,32 @@ import Counter from './Timer'
 import TodoDescription from "./TodoDescription";
 import Addbutton from './Addtodolist'
 import DateInput from "./DateInput";
-import EditTask from "./EditTask";
+import { FancyBorder } from './FancyBorder';
 
 
-const desc = [
-    'Random todo1',
-    'Random todo2',
-    'Random todo3',
-    'Random todo4'
-]
 
-let todoArrEdit = [];
 
 export const TodoList = ({ fetchUrl }) => {
 
-    const [todo, setTodo] = useState([])
-    const [text, setText] = useState('')
-    const [date, setDate] = useState('')
-    const [edit, setEdit] = useState([])
-    const [editInput, setEditInput] = useState('')
-    const [buttonValue, setButtonValue] = useState('Edit')
+    const [todo, setTodo] = useState([{}])
+    const [helpTodo, setHelpTodo] = useState([])
+    const [todoDesc, setTodoDesc] = useState('')
 
     useEffect(() => {
-        existingTodo();
+        getTodo()
     }, []);
+  
 
 
     const getTodo = () => {
-        return (
+
             fetch(fetchUrl).then(response => response.json())
-        )
+            .then((result) => {
+                setTodo(result)
+               
+            })
     }
 
-    const existingTodo = () => {
-        return (
-            getTodo().then((result) => {
-                const fetchItems = result.map(item => {
-                    const nextTodo = { ...item, 'edit': false }
-                    setTodo((prev) => [...prev, nextTodo])
-                })
-            }
-            )
-        )
-    }
 
 
     const deleteItems = (id) => {
@@ -72,36 +55,38 @@ export const TodoList = ({ fetchUrl }) => {
 
     const addTodo = () => {
         const nextId = todo.length + 2
-        const nextTodo = [...todo, { 'description': text, 'id': nextId, 'checked': false, 'deadline': date }]
-        setTodo(nextTodo)
-        //console.log(nextTodo); //is it a bug that it is not been added at the same time to todo array?
+        setTodo([...todo,{...helpTodo, id : nextId}])
     }
     const onTextChange = (event) => {
-        setText(event.target.value);
+        setHelpTodo({...helpTodo, description : event.target.value});
+        console.log(helpTodo);
     }
 
     const onDateChange = (event) => {
-        setDate(event.target.value);
+        setHelpTodo({...helpTodo, deadline : event.target.value});
+        console.log(helpTodo);
+    }
+
+
+    const onEditChange = (event) => {
+        setTodoDesc(event.target.value);
     }
 
     const editTodo = (id) => {
-        var editList = [...todo]
-        editList.map(item => {
+        todo.map(item => {
             if (item.id == id) {
-                const nextTodo = { ...item, 'edit': true }
-                edit.push(nextTodo)
-                setEditInput(item.description)
-            }
-            else {
-                const nextTodo = { ...item, 'edit': false }
-                edit.push(nextTodo)
+                setTodoDesc(item.description);
             }
         })
-        setTodo(edit)
     }
 
-    const onEditChange = (event) => {
-        setEditInput(event.target.value);
+    const updateTodo = (id) => {
+        const index = todo.findIndex(object => {
+            return object.id ===id
+        })
+        todo[index].description = todoDesc;
+        setTodo(todo)
+console.log(todo);
     }
 
 
@@ -115,22 +100,23 @@ export const TodoList = ({ fetchUrl }) => {
             <Addbutton addTodo={addTodo} />
             <ul>
                 {todo.map((item) => {
-
+                    // console.log(item);
                     return (
-
+                        <FancyBorder>
                         <TodoListRow key={item.id}
                             todo={item.description}
-                            edit={item.edit}
                             todoDate={item.deadline}
                             checked={item.checked}
                             onCheck={() => { stateChange(item.id) }}
                             onclick={() => { deleteItems(item.id) }}
-                            editTodo={() => editTodo(item.id)}
                             onEdit={onEditChange}
-                            editInput={editInput}
+                            editInput={todoDesc}
+                            updateTodo={() => { updateTodo(item.id) }}
+                            editTodo={() => { editTodo(item.id) }}
                         />
+                        </FancyBorder>
                     )
-                })}
+                    })}
             </ul>
             {todo.length === 0 ? <DeleteFromList /> : true}
         </div>
