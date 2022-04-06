@@ -16,7 +16,7 @@ const TodoListRow = ({
   const [edit, setEdit] = useState(false);
 
   return (
-     <>
+    <>
       <li>
         <span className={checked ? "checked" : "unchecked"}>
           {edit === false ? (
@@ -29,7 +29,6 @@ const TodoListRow = ({
         </span>
         <input type={"checkbox"} value={checked} onChange={onCheck}></input>
         <button onClick={onclick}>Delete</button>
-        {/* {useEffect(() => { */}
         <>
           {edit === false ? (
             <button
@@ -51,9 +50,8 @@ const TodoListRow = ({
             </button>
           )}
         </>
-        {/* },[])} */}
       </li>
-     </>
+    </>
   );
 };
 
