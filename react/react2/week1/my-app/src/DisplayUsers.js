@@ -9,15 +9,16 @@ export const DisplayUsers = () => {
   return (
     <div>
       {loading}
-      {finalResult !== undefined && finalResult.length !== 0  ? (
+      {finalResult !== undefined && finalResult.length !== 0 ? (
         finalResult.map((item) => {
           return <div key={item.login}>{item.login}</div>;
         })
+      ) : serchInputValue.length == 0 ? (
+        <p>"No result"</p>
       ) : (
-        serchInputValue.length == 0 ? <p>"No result"</p> : <p>{error}</p>
-      ) 
-      }
-      {setLoading('')}
+        <p>{error}</p>
+      )}
+      {/* {setLoading("")} */}
     </div>
-    )
+  );
 };

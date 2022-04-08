@@ -11,7 +11,7 @@ const SearchBoxFunction = () => {
   const [error, setError] = useState("");
 
   const FetchUrl = async () => {
-    setLoading("loading...");
+    // setLoading("loading...");
     return fetch(
       `https://api.github.com/search/users?q=${serchInputValue}`
     ).then((response) => {
@@ -26,6 +26,7 @@ const SearchBoxFunction = () => {
     await FetchUrl()
       .then((data) => setFetchResult(data))
       .catch((error) => setError(error.message));
+      setLoading('')
   };
   useEffect(() => {
     getData();
