@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import './TodoList.css';
 import Addbutton from './Addtodolist'
 import TodoListRow from './TodoListRow'
-import DeleteFromList from './DeleteFromList'
-import Counter from './Timer'
+import EmptyTodoList from './DeleteFromList'
 
-const todos = [
+const todosInitiaArr = [
     {
         id: 1,
         description: "Get out of bed",
@@ -32,55 +31,53 @@ const desc = [
 
 export const TodoList = () => {
     //const [todo, setTodo] = useState(todos)
-    let [todo, setTodo] = useState(todos)
+    let [todos, setTodos] = useState(todosInitiaArr)
 
     const addTodo = () => {
         const randomIndex = Math.floor(Math.random() * desc.length)
-        const nextId = todo.length + 2
-        const nextTodo = todo.concat({ description: desc[randomIndex], id: nextId, checked: false })
-        setTodo((nextTodo))
+        const nextId = todos[todos.length-1].id + 1
+        const nextTodos = todos.concat({ description: desc[randomIndex], id: nextId, checked: false })
+        setTodos((nextTodos))
     }
 
 
     const deleteItem = (id) => {
-        var deletedList = [...todo]
-        const filteredList = deletedList.filter(item => item.id !== id)
-        console.log(filteredList);
-        setTodo(filteredList)
+        var todoSpareArr = [...todos]
+        const filteredList = todoSpareArr.filter(item => item.id !== id)
+        setTodos(filteredList)
         if (filteredList.length === 0) {
             console.log('no item');
-             setTodo([])
+             setTodos([])
         }
     }
 
 
-    const stateChange = (id) => {
-        var updatedList = [...todo]
-        updatedList.forEach(item => {
+    const toggleTodo = (id) => {
+        var updatedList = [...todos]
+        updatedList.map(item => {
             if(item.id === id) {
-                item.checked = !item.checked
+               return item.checked = !item.checked
             }
         })
-        setTodo(updatedList) 
+        setTodos(updatedList) 
     }
 
 
     return (
         <div>
-            <Counter/>
             <ul>
-            {todo.map((item, index) => {
+            {todos.map((item, index) => {
                 return ( 
                         <TodoListRow key={item.id} 
                         todo={item.description} 
                         checked={item.checked}  
-                        onCheck={() => {stateChange(item.id)}}  
-                        onclick={() => {deleteItem(item.id)}} />         
+                        onToggle={() => {toggleTodo(item.id)}}  
+                        onDelete={() => {deleteItem(item.id)}} />         
                 )
             })}
         </ul>
         <Addbutton addTodo={addTodo}/>
-        {todo.length===0 ? <DeleteFromList/> : true}
+        {todos.length===0 ? <EmptyTodoList/> : true}
         </div>
     )
 }

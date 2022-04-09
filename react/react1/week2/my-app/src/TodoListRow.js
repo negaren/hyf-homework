@@ -1,4 +1,4 @@
-const TodoListRow = ({ todo, checked, onCheck, onclick } ) => {
+const TodoListRow = ({ todo, checked, onToggle, onDelete } ) => {
     // destructuring
     return (
         <li>
@@ -6,8 +6,8 @@ const TodoListRow = ({ todo, checked, onCheck, onclick } ) => {
             {todo}
             </span>
             
-            <input type={'checkbox'} value={checked} onChange={onCheck}></input>
-            <button onClick={onclick} >Delete</button>
+            <input type={'checkbox'} value={checked} onChange={onToggle}></input>
+            <button onClick={onDelete} >Delete</button>
         </li>
     )
 }

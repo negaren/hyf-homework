@@ -1,4 +1,4 @@
-const DeleteFromList = ({deleteItem}) => {
+const EmptyTodoList = ({deleteItem}) => {
     return (
         <span deleteItem={deleteItem} >
             No more items to show
@@ -6,4 +6,4 @@ const DeleteFromList = ({deleteItem}) => {
     )
 }
 
-export default DeleteFromList 
+export default EmptyTodoList 
