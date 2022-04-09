@@ -4,7 +4,6 @@ import "./HyfRepoDisplay.css";
 
 const HyfRepoDisplay = ({ onChange }) => {
   const { user, fetchedData, error } = useContext(HyfRepoContext);
-  console.log(error);
 
   return (
     <>
