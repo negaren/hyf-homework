@@ -1,9 +1,9 @@
-const DeleteFromList = ({deleteItems}) => {
+const EmptyListMessage = () => {
     return (
-        <span deleteItem={deleteItems} >
+        <span>
             No more items to show
         </span>
     )
 }
 
-export default DeleteFromList 
+export default EmptyListMessage 

@@ -1,52 +1,52 @@
 import React, { useState, useEffect } from "react";
 import "./TodoList.css";
 import TodoListRow from "./TodoListRow";
-import DeleteFromList from "./DeleteFromList";
-import Counter from "./Timer";
+import EmptyListMessage from "./DeleteFromList";
 import TodoDescription from "./TodoDescription";
 import Addbutton from "./Addtodolist";
 import DateInput from "./DateInput";
 import { FancyBorder } from "./FancyBorder";
 
 export const TodoList = ({ fetchUrl }) => {
-  const [todo, setTodo] = useState([{}]);
+  const [todos, setTodos] = useState([]);
   const [helpTodo, setHelpTodo] = useState([]);
   const [todoDesc, setTodoDesc] = useState("");
 
-  useEffect(() => {
+  useEffect( () => {
     getTodo();
   }, []);
 
-  const getTodo = () => {
-    fetch(fetchUrl)
+  const getTodo = async () => {
+    await fetch(fetchUrl)
       .then((response) => response.json())
       .then((result) => {
-        setTodo(result);
+        setTodos(result);
       });
   };
 
   const deleteItems = (id) => {
-    var deletedList = [...todo];
-    const filteredList = deletedList.filter((item) => item.id !== id);
-    setTodo(filteredList);
+    var todosSapreArr = [...todos];
+    const filteredList = todosSapreArr.filter((item) => item.id !== id);
+    setTodos(filteredList);
     if (filteredList.length === 0) {
-      setTodo([]);
+      setTodos([]);
     }
   };
 
   const stateChange = (id) => {
-    var updatedList = [...todo];
-    updatedList.forEach((item) => {
+    var todosSapreArr = [...todos];
+    todosSapreArr.forEach((item) => {
       if (item.id === id) {
         item.checked = !item.checked;
       }
     });
-    setTodo(updatedList);
+    setTodos(todosSapreArr);
   };
 
   const addTodo = () => {
-    const nextId = todo.length + 2;
-    setTodo([...todo, { ...helpTodo, id: nextId }]);
+    const nextId = todos[todos.length-1].id + 1;
+    setTodos([...todos, { ...helpTodo, id: nextId }]);
+    console.log(todos);
   };
   const onTextChange = (event) => {
     setHelpTodo({ ...helpTodo, description: event.target.value });
@@ -63,50 +63,50 @@ export const TodoList = ({ fetchUrl }) => {
   };
 
   const editTodo = (id) => {
-    todo.map((item) => {
+    todos.map((item) => {
       if (item.id == id) {
         setTodoDesc(item.description);
       }
     });
   };
 
-  const updateTodo = (id) => {
-    const index = todo.findIndex((object) => {
-      return object.id === id;
-    });
-    todo[index].description = todoDesc;
-    setTodo(todo);
-    console.log(todo);
-  };
+
+    const updateTodo = (id) => {
+      const index = todos.findIndex((object) => {
+        return object.id === id;
+      });
+      let todoSpareArr = [...todos]
+      todoSpareArr[index].description = todoDesc;
+      setTodos(todoSpareArr);
+    };
+
+  
 
   return (
     <div>
-      <Counter />
       <TodoDescription onchange={onTextChange} />
       <br />
       <DateInput onchange={onDateChange} />
       <br />
       <Addbutton addTodo={addTodo} />
       <ul>
-        {todo.map((item) => {
+        {todos.map((item) => {
           return (
-            <FancyBorder>
+            <FancyBorder key={item.id}>
               <TodoListRow
                 key={item.id}
-                todo={item.description}
+                todoDescription={item.description}
                 todoDate={item.deadline}
                 checked={item.checked}
                 onCheck={() => {
                   stateChange(item.id);
                 }}
-                onclick={() => {
+                onDelete={() => {
                   deleteItems(item.id);
                 }}
                 onEdit={onEditChange}
                 editInput={todoDesc}
-                updateTodo={() => {
-                  updateTodo(item.id);
-                }}
+                updateTodo={()=>updateTodo(item.id)}
                 editTodo={() => {
                   editTodo(item.id);
                 }}
@@ -115,7 +115,7 @@ export const TodoList = ({ fetchUrl }) => {
           );
         })}
       </ul>
-      {todo.length === 0 ? <DeleteFromList /> : true}
+      {todos.length === 0 ? <EmptyListMessage /> : true}
     </div>
   );
 };

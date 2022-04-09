@@ -1,6 +1,6 @@
 import './Header.css';
 
-export function MainHearder() {
+export function MainHeader() {
     return (
       <div className="App">
         <header className="App-header">

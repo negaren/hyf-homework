@@ -1,12 +1,11 @@
-import { useState, useEffect } from "react";
-import { FancyBorder } from "./FancyBorder";
+import { useState } from "react";
 
 const TodoListRow = ({
-  todo,
+  todoDescription,
   todoDate,
   checked,
   onCheck,
-  onclick,
+  onDelete,
   onEdit,
   editInput,
   updateTodo,
@@ -21,14 +20,14 @@ const TodoListRow = ({
         <span className={checked ? "checked" : "unchecked"}>
           {edit === false ? (
             <span>
-              {todo} | {todoDate}
+              {todoDescription} | {todoDate}
             </span>
           ) : (
             <input type={"text"} value={editInput} onChange={onEdit}></input>
           )}
         </span>
         <input type={"checkbox"} value={checked} onChange={onCheck}></input>
-        <button onClick={onclick}>Delete</button>
+        <button onClick={onDelete}>Delete</button>
         <>
           {edit === false ? (
             <button
