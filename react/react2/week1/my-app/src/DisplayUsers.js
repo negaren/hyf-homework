@@ -3,9 +3,9 @@ import { resultContext } from "./SearchBoxFunction";
 import "./DisplayUsers.css";
 
 export const DisplayUsers = () => {
-  const { fetchResult, loading, serchInputValue, error } =
+  const { fetchResult, loading, serchInputValue, errorMessage } =
     useContext(resultContext);
-    console.log(error);
+    console.log(errorMessage);
   return (
     <div>
       {loading}
@@ -16,7 +16,7 @@ export const DisplayUsers = () => {
       ) : serchInputValue.length == 0 ? (
         <p>"No result"</p>
       ) : (
-        <p>{error}</p>
+        <p>{errorMessage}</p>
       )}
     </div>
   );

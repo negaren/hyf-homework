@@ -33,7 +33,7 @@ const SearchBoxFunction = () => {
       })
       .catch((error) => {
          setFetchResult([]);
-        setError(error.message);
+         setError(error.Error || error.message)
       })
       .finally(() => setLoading(""));
   };
