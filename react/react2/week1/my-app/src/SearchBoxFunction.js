@@ -22,19 +22,19 @@ const SearchBoxFunction = () => {
 
     fetch(`https://api.github.com/search/users?q=${serchInputValue}`)
       .then((response) => {
-        if (!response.ok ) {
-          response.json().then((error) => { 
-
-            setError(error.message)
-   
-          })
-          throw Error(response.message);
+        if (!response.ok) {
+          response.json().then((error) => {
+            setError(error.message);
+            setFetchResult([]);
+          });
+          return;
         }
         return response.json();
       })
       .then((data) => {
         if (data) {
           setFetchResult(data.items);
+          setError();
         }
       })
       .catch((error) => {
