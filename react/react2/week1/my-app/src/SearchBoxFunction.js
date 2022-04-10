@@ -13,16 +13,22 @@ const SearchBoxFunction = () => {
   const getData = async () => {
     if (serchInputValue === "") {
       setFetchResult([]);
+
       setLoading("");
       return;
     }
 
     setLoading("loading...");
 
-     await fetch(`https://api.github.com/search/users?q=${serchInputValue}`)
+    fetch(`https://api.github.com/search/users?q=${serchInputValue}`)
       .then((response) => {
         if (!response.ok ) {
-          throw Error("Could not fetch the data");
+          response.json().then((error) => { 
+
+            setError(error.message)
+   
+          })
+          throw Error(response.message);
         }
         return response.json();
       })
@@ -37,34 +43,11 @@ const SearchBoxFunction = () => {
       })
       .finally(() => setLoading(""));
   };
-
   
   useEffect(() => {
     getData();
   }, [serchInputValue]);
 
-  // const FetchUrl = async () => {
-  //   // setLoading("loading...");
-  //   return fetch(
-  //     `https://api.github.com/search/users?q=${serchInputValue}`
-  //   ).then((response) => {
-  //     if (!response.ok) {
-  //       throw Error("Could not fetch the data");
-  //     }
-  //     return response.json();
-  //   });
-  // };
-
-  // const getData = async () => {
-  //   await FetchUrl()
-  //     .then((data) => setFetchResult(data))
-  //     .catch((error) => setError(error.message));
-  //     setLoading('')
-  // };
-
-  // useEffect(() => {
-  //   getData();
-  // }, [serchInputValue]);
 
   function onChangeSearchInput(e) {
     setSerchInputValue(e.target.value);
