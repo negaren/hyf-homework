@@ -1,3 +1,4 @@
 1- onion
 2- lettuce
 3- carrot
+4- garlic
